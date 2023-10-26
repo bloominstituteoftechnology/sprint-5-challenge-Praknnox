@@ -12,7 +12,7 @@ async function sprintChallenge5() { // Note the async keyword, in case you wish 
     let mails=document.createElement('p')
     mails.textContent=arg1.email
     let mentos=document.createElement('p')
-    let mnames=arg2.find(mentor=>mentor.id===learner.mentors)
+    let mnames=arg2.find(mentor=>mentor.id===arg1.mentors)
     mentos.textContent=mnames
     [nom,mails,mentos].forEach(p=>{
       card.appendChild(p)
@@ -29,6 +29,8 @@ let learners
 axios.get('http://localhost:3003/api/learners').then(res=>{
   console.log(res.data)
   learners=res.data
+}).catch(err=>{
+  console.log(err.message)
 })
 let mentors
 axios.get('http://localhost:3003/api/mentors').then(resp=>{
