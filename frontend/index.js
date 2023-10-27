@@ -25,21 +25,19 @@ async function sprintChallenge5() { // Note the async keyword, in case you wish 
     })
     return card
   }
-let learners
-axios.get('http://localhost:3003/api/learners').then(res=>{
-  console.log(res.data)
-  learners=res.data
-}).catch(err=>{
-  console.log(err.message)
-})
-let mentors
-axios.get('http://localhost:3003/api/mentors').then(resp=>{
-  mentors=resp.data
-})
-learners.forEach(learner=>{
-  let pickle=create(learner,mentors)
-  document.querySelector('.cards').appendChild(pickle)
-})
+  try {
+    let learners=await axios.get('http://localhost:3003/api/learners')
+    let mentors=await axios.get('http://localhost:3003/api/mentors')
+    learners.forEach(learner=>{
+      let pickle=create(learner,mentors)
+      document.querySelector('.cards').appendChild(pickle)
+    })
+    
+    
+  } catch (error) {
+    
+  }
+
 
   // 👆 WORK WORK ABOVE THIS LINE 👆
 }
