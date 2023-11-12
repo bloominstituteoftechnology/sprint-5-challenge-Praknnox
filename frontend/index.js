@@ -4,15 +4,15 @@ async function sprintChallenge5() { // Note the async keyword, in case you wish 
   const footer = document.querySelector('footer')
   const currentYear = new Date().getFullYear()
   footer.textContent = `© BLOOM INSTITUTE OF TECHNOLOGY ${currentYear}`
-  function create(arg1,arg2){
+  function create(learner,mentors){
     let card=document.createElement('div')
-    card.classList.add('an-card')
+    card.classList.add('card')
     let nom=document.createElement('p')
-    nom.textContent=arg1.fullName
+    nom.textContent=learner.fullName
     let mails=document.createElement('p')
-    mails.textContent=arg1.email
+    mails.textContent=learner.email
     let mentos=document.createElement('p')
-    let mnames=arg2.find(mentor=>mentor.id===arg1.mentors)
+    let mnames=mentors.find(ment=>ment.id===learners.mentors)
     mentos.textContent=mnames
     [nom,mails,mentos].forEach(p=>{
       card.appendChild(p)
@@ -27,9 +27,9 @@ async function sprintChallenge5() { // Note the async keyword, in case you wish 
   }
   try {
     let learners=await axios.get('http://localhost:3003/api/learners')
-    let mentors=await axios.get('http://localhost:3003/api/mentors')
+    let mentorss=await axios.get('http://localhost:3003/api/mentors')
     learners.forEach(learner=>{
-      let pickle=create(learner,mentors)
+      let pickle=create(learner,mentorss)
       document.querySelector('.cards').appendChild(pickle)
     })
     
