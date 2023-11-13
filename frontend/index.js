@@ -4,7 +4,7 @@ async function sprintChallenge5() { // Note the async keyword, in case you wish 
   const footer = document.querySelector('footer')
   const currentYear = new Date().getFullYear()
   footer.textContent = `© BLOOM INSTITUTE OF TECHNOLOGY ${currentYear}`
-  function create(learner,mentors){
+  function create(learner,mentor){
     let card=document.createElement('div')
     card.classList.add('card')
     let nom=document.createElement('p')
@@ -12,7 +12,7 @@ async function sprintChallenge5() { // Note the async keyword, in case you wish 
     let mails=document.createElement('p')
     mails.textContent=learner.email
     let mentos=document.createElement('p')
-    let mnames=mentors.find(ment=>ment.id===learners.mentors)
+    let mnames=mentor.find(ment=>ment.id===learner.mentors)
     mentos.textContent=mnames
     [nom,mails,mentos].forEach(p=>{
       card.appendChild(p)
