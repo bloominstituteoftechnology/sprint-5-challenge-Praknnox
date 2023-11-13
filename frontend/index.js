@@ -18,7 +18,7 @@ async function sprintChallenge5() { // Note the async keyword, in case you wish 
       card.appendChild(p)
     })
     card.addEventListener('click',eve=>{
-      document.querySelectorAll('.an-card').forEach(suit=>{
+      document.querySelectorAll('.card').forEach(suit=>{
         suit.classList.remove('active')
       })
       card.classList.add('active')
