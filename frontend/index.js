@@ -1,9 +1,25 @@
 async function sprintChallenge5() { // Note the async keyword, in case you wish to use `await` inside sprintChallenge5
   // 👇 WORK WORK BELOW THIS LINE 👇
-
+  
   const footer = document.querySelector('footer')
   const currentYear = new Date().getFullYear()
   footer.textContent = `© BLOOM INSTITUTE OF TECHNOLOGY ${currentYear}`
+  try {
+    let learners=await axios.get('http://localhost:3003/api/learners')
+    let mentorss=await axios.get('http://localhost:3003/api/mentors')
+    let ego=learners.map(learner=>{
+      return learner.id
+    })
+    let 
+    /*learners.forEach(learner=>{
+      let pickle=create(learner,mentorss)
+      document.querySelector('.cards').appendChild(pickle)
+    })*/
+    
+    
+  } catch (error) {
+    
+  }
   function create(learner,mentor){
     let card=document.createElement('div')
     card.classList.add('card')
@@ -24,18 +40,6 @@ async function sprintChallenge5() { // Note the async keyword, in case you wish 
       card.classList.add('active')
     })
     return card
-  }
-  try {
-    let learners=await axios.get('http://localhost:3003/api/learners')
-    let mentorss=await axios.get('http://localhost:3003/api/mentors')
-    learners.forEach(learner=>{
-      let pickle=create(learner,mentorss)
-      document.querySelector('.cards').appendChild(pickle)
-    })
-    
-    
-  } catch (error) {
-    
   }
 
 
