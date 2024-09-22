@@ -4,8 +4,6 @@
 
 Welcome to Sprint Challenge 5! Today, you'll practice using JavaScript to manipulate the DOM by fetching data from the network and building a section of a web page using "vanilla" JavaScript, without any frameworks.
 
-This experience will give you a taste of what your first task at a software company might feel like, and it matches the difficulty and scope of a take-home assignment during a hiring process for a Web Developer position.
-
 Here's an overview of the tasks you need to complete:
 
 1. **Obtain** JSON data from a web service.
@@ -17,10 +15,8 @@ To succeed in this challenge, you'll need the following technical skills:
 1. **Promises** and the ability to deal with asynchronous code.
 1. **Making HTTP requests** with Axios or fetch.
 1. **Looping over data** to populate a new data structure.
-1. **Selecting elements** and groups of elements from the DOM.
+1. **Manipulating DOM elements** to edit text, class names.
 1. **Creating new elements** and attaching them to the DOM.
-1. **Altering the text content** and class names of elements based on certain events.
-1. **Adding simple interactivity** to elements via event listeners.
 
 Additionally, the following soft skills will greatly impact your performance:
 
@@ -30,9 +26,9 @@ Additionally, the following soft skills will greatly impact your performance:
 
 ## Instructions
 
-On your first day as a junior web developer at a coding school, you have been assigned a ticket to complete. The task involves adding a new feature to the school's software platform.
+On your first day as a junior web developer at a coding school, you have been assigned a ticket to complete. The task involves completing some code for the school's software platform.
 
-Specifically, you need to complete a website that displays a list of learners along with their basic information such as ID, name, email, and a list of mentors. Users should be able to click on a learner to highlight it, and the list of mentors for each learner should be expandable and collapsible. You can refer to the [full mockup](https://w-s5-challenge.herokuapp.com/) for the design and behavior of the page.
+Specifically, you need to fix a website that displays a list of learners along with their basic information such as ID, name, email, and a list of mentors. Users should be able to click on a learner to highlight it, and the list of mentors for each learner should be expandable and collapsible. You can refer to the [full mockup](https://w-s5-challenge.herokuapp.com/) for the design and behavior of the page. Don't worry: most of the code is already done, you only need to **fix three areas of the code** which are incomplete, causing the website not to work correctly.
 
 To help you complete the task, several members of your team will provide you with instructions and advice.
 
@@ -108,13 +104,24 @@ Awesome! Our back-end engineer says that the JSON data needed to build the Learn
 
 ❗ You should stop now, and **try out both endpoints using Postman**, to see what they return.
 
-Here's the tricky thing: each learner has a short list of mentors, but the response from Endpoint A only identifies the mentors by their ID numbers. This means **you will need to match the mentor IDs from Endpoint A with the real names of the mentors, found in the response from Endpoint B**.
+❗ Here's the tricky thing: each learner has a short list of mentors, but the response from Endpoint A only identifies the mentors by their ID numbers. This means you will need to match the mentor IDs from Endpoint A with the real names of the mentors, found in the response from Endpoint B.
 
-For fetching, just await the Axios request to Endpoint A, and then await the request to Endpoint B. (Optionally, you can use `Promise.all` to handle both requests. We do not need the data from request A in order to _start_ request B, so the requests can happen concurrently instead of back-to-back.)
+❗ Only make changes to the [index.js](./frontend/index.js) file, and only in the areas marked TASK 1, TASK 2, TASK 3.
 
-Once you have the payloads from Endpoints A and B stored inside variables, check that they match what you saw in Postman, and then **use your JavaScript skills to combine the two lists into a single data structure** that is comfortable to work with. Ideally, it would look something like this:
+❗ Now open [index.js](./frontend/index.js) and find your tasks! Find a brief description of each task below.
+
+Reach out if you get too stuck, and have fun!
+
+**TASK 1:**
+
+For fetching, just **await** the Axios request to Endpoint A, and then await the request to Endpoint B. (_Optionally_, you can use `Promise.all` to handle both requests. We do not need the data from request A in order to _start_ request B, so the requests can happen concurrently instead of back-to-back.)
+
+**TASK 2:**
+
+Once you have the data from Endpoints A and B stored inside variables called `learners` and `mentors`, check that this data matches what you saw in Postman, and then **use your JavaScript skills** to combine the two lists into a single data structure** called `learners` that is comfortable to work with. This data structure **must** look like this:
 
 ```js
+// the variable holding the combined data must be called `learners`
 [
   // etc
   {
@@ -127,17 +134,11 @@ Once you have the payloads from Endpoints A and B stored inside variables, check
 ]
 ```
 
-Once you have the data in the right shape, you can **create a component function** that takes a single learner in the format above as its argument, and returns a Learner Card. Then just loop over the data, generating cards as you go, and attaching them to the DOM.
+**TASK 3:**
 
-Make sure that each element you create uses the **exact same class names and text contents** as those in the design! Also, render the learners **in the same order** as they arrive from Endpoint A.
+Once you have the data in the right shape, scroll down to TASK 3 and find the `card`, `heading`, `email`, `mentorsHeading`, `mentorsList` elements nice and ready to receive their initial text content and class names. Use **your DOM manipulation skills** to flesh out these DOM elements so that they match exactly what you see in the DOM of the mock site. Use the Elements tab of the browser to check the initial class names of the elements in the mock.
 
-As for interactivity, all the behaviors on the page as the user clicks on the cards boil down to **changes in text contents of some elements, and changes to some class names** which can be observed in the [mock](https://w-s5-challenge.herokuapp.com/). Do not use any other mechanisms! Do not use inline styles!
-
-It might seem like you need several click handlers on different elements inside the card, but that would just make the code more complicated. Remember, events bubble up from the target to its ancestor elements! It's easier to just attach an event listener on the card element, and then **check who the target of the click is before taking the appropriate action**.
-
-❗ Only make changes to the `frontend/index.js` file.
-
-Reach out if you get too stuck, and have fun!
+You will also need to loop over the mentor names, and create an `li` element for each of the mentors, and append it to its parent, the `ul` element. Once this is done correctly, your site should match the mock site exactly!
 
   ---
 
