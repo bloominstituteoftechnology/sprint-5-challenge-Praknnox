@@ -1,3 +1,5 @@
+const { default: axios } = require("axios")
+
 async function sprintChallenge5() { // Note the async keyword so you can use `await` inside sprintChallenge5
   // 👇 WORK ONLY BELOW THIS LINE 👇
   // 👇 WORK ONLY BELOW THIS LINE 👇
@@ -9,8 +11,14 @@ async function sprintChallenge5() { // Note the async keyword so you can use `aw
   // ❗ Use the variables `mentors` and `learners` to store the data.
   // ❗ Use the await keyword when using axios.
 
-  let mentors = [await axios.get('http://localhost:3003/api/mentors')] // fix this
-  let learners = [awit axios.get('http://localhost:3003/api/learners')] // fix this
+  let mentors = [] // fix this
+  await axios.get('http://localhost:3003/api/mentors').then(res=>{
+    mentors.push(res.data)
+  })
+  let learners = [] // fix this
+  await axios.get('http://localhost:3003/api/learners').then(res=>{
+    learners.push(res.data)
+  })
 
   // 👆 ==================== TASK 1 END ====================== 👆
 
@@ -48,10 +56,17 @@ async function sprintChallenge5() { // Note the async keyword so you can use `aw
     // ❗ Inspect the mock site closely to understand what the initial texts and classes look like!
 
     const card = document.createElement('div')
+    card.className='card'
     const heading = document.createElement('h3')
+    document.querySelector('h3').appendChild('.card')
     const email = document.createElement('div')
+    email.className='email'
+    document.querySelector('.email').appendChild('.card')
     const mentorsHeading = document.createElement('h4')
+    mentorsHeading.classList.add('closed')
+    document.querySelector('h4').appendChild('.card')
     const mentorsList = document.createElement('ul')
+    document.querySelector('ul').appendChild('.card')
 
     // 👆 ==================== TASK 3 END ====================== 👆
 
