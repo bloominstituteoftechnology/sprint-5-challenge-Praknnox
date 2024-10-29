@@ -1,4 +1,4 @@
-const { default: axios } = require("axios")
+//const { default: axios } = require("axios")
 
 async function sprintChallenge5() { // Note the async keyword so you can use `await` inside sprintChallenge5
   // 👇 WORK ONLY BELOW THIS LINE 👇
@@ -13,12 +13,14 @@ async function sprintChallenge5() { // Note the async keyword so you can use `aw
 
   let mentors = [] // fix this
   await axios.get('http://localhost:3003/api/mentors').then(res=>{
-    mentors.push(res.data)
+    mentors.push(...res.data)
   })
   let learners = [] // fix this
   await axios.get('http://localhost:3003/api/learners').then(res=>{
-    learners.push(res.data)
+    learners.push(...res.data)
   })
+  //console.log(learners)
+  //console.log(mentors)
 
   // 👆 ==================== TASK 1 END ====================== 👆
 
@@ -36,6 +38,7 @@ async function sprintChallenge5() { // Note the async keyword so you can use `aw
   //     "Grace Hopper"
   //   ]`
   // }
+  
 
   // 👆 ==================== TASK 2 END ====================== 👆
 
@@ -58,15 +61,18 @@ async function sprintChallenge5() { // Note the async keyword so you can use `aw
     const card = document.createElement('div')
     card.className='card'
     const heading = document.createElement('h3')
-    document.querySelector('h3').appendChild('.card')
+    heading.textContent=learner.fullName
+    card.appendChild(heading)
     const email = document.createElement('div')
     email.className='email'
-    document.querySelector('.email').appendChild('.card')
+    card.appendChild(email)
+    email.textContent=learner.email
     const mentorsHeading = document.createElement('h4')
     mentorsHeading.classList.add('closed')
-    document.querySelector('h4').appendChild('.card')
+    card.appendChild(mentorsHeading)
+    mentorsHeading.textContent='mentors'
     const mentorsList = document.createElement('ul')
-    document.querySelector('ul').appendChild('.card')
+    mentorsList.textContent=learner.mentors
 
     // 👆 ==================== TASK 3 END ====================== 👆
 
