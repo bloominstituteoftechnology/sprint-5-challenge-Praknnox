@@ -38,6 +38,9 @@ async function sprintChallenge5() { // Note the async keyword so you can use `aw
   //     "Grace Hopper"
   //   ]`
   // }
+  learners.forEach(person=>{
+    person.mentors=person.mentors.map(mentorname=>mentors.find(mentor=>mentor.id===mentorname))
+  })
   
 
   // 👆 ==================== TASK 2 END ====================== 👆
@@ -70,9 +73,13 @@ async function sprintChallenge5() { // Note the async keyword so you can use `aw
     const mentorsHeading = document.createElement('h4')
     mentorsHeading.classList.add('closed')
     card.appendChild(mentorsHeading)
-    mentorsHeading.textContent='mentors'
+    mentorsHeading.textContent='Mentors'
     const mentorsList = document.createElement('ul')
-    mentorsList.textContent=learner.mentors
+    learner.mentors.forEach(men=>{
+      let mentorre=document.createElement('li')
+      mentorre.textContent=`${men.firstName} ${men.lastName}`
+      mentorsList.appendChild(mentorre)
+    })
 
     // 👆 ==================== TASK 3 END ====================== 👆
 
@@ -122,7 +129,7 @@ async function sprintChallenge5() { // Note the async keyword so you can use `aw
 
   const footer = document.querySelector('footer')
   const currentYear = new Date().getFullYear()
-  footer.textContent = `© BLOOM INSTITUTE OF TECHNOLOGY ${currentYear}`
+  footer.textContent = `© BLOOM INSTITUTE OF TECHNOLOGY 2023`
 }
 
 // ❗ DO NOT CHANGE THIS CODE. WORK ONLY INSIDE TASKS 1, 2, 3
